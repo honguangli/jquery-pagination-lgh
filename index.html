@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>jquery-pagination-lgh</title>
+    <link rel="stylesheet" href="css/jquery-pagination-lgh.css" />
+	</head>
+	<body>
+		<div class="pagination-box"></div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-pagination-lgh.js"></script>
+    <script>
+      // step-1
+      let $paginationBox = $('.pagination-box');
+      // step-2
+      let opt = {
+              curr: 1,
+              limit: 9,
+              total: 99,
+              show: 3,
+              autoRefresh: true,
+              clickFun: function (curr, limit) {
+                  testFun(curr, limit);
+              }
+          };
+      // step-3
+      $paginationBox.pagination(opt);
+      // api
+      $paginationBox.pagination('update', {curr: times, total: times+100}, true);
+      $paginationBox.pagination('refresh'); 
+      
+      function testFun(page, limit) {
+        console.log("click fun: page = ", page, "limit = ", limit)
+      }
+      
+      var times = 1;
+      const interval = setInterval(function() {
+              // step-4
+              $paginationBox.pagination('update', {curr: times, total: times+100}, true);
+              if (times++ > 5) {
+                  clearInterval(interval);
+              }
+          }, 500); 
+    </script>
+	</body>
+</html>

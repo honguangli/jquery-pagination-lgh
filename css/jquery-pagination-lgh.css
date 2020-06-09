@@ -1,0 +1,62 @@
+.pagination-box {
+}
+.pagination-box ul {
+    display: inline-block;
+    margin: 20px 0;
+}
+.pagination-box ul > li {
+    display: inline-block;
+    float: left;
+    padding: 0 2px;
+}
+.pagination-box ul > li > a {
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    width: 40px;
+    height: 40px;
+    padding: 5px 10px;
+    border: 1px solid #AAAAAA;
+    background-color: #FFFFFF;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.pagination-box ul > li.page-number a {
+    width: 40px;
+    border-radius: 0;
+}
+.pagination-box ul > li.page-start a {
+    width: 100px;
+    border-radius: 0 20px;
+}
+.pagination-box ul > li.page-end a {
+    width: 100px;
+    border-radius: 0 20px;
+}
+.pagination-box ul > li.page-left a {
+    width: 40px;
+    border-radius: 0 20px;
+    background-color: #CBDCEE;
+    color: #FFFFFF;
+    border-color: #CBDCEE;
+}
+.pagination-box ul > li.page-right a {
+    width: 40px;
+    border-radius: 0 20px;
+    background-color: #CBDCEE;
+    color: #FFFFFF;
+    border-color: #CBDCEE;
+}
+.pagination-box ul > li.disabled a {
+    cursor: not-allowed;
+}
+.pagination-box ul > li:not(.disabled) > a:hover, .pagination-box ul > li.on > a{
+    background-color: #0051AD;
+    color: #FFFFFF;
+    border-color: #0051AD;
+}
