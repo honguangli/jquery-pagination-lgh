@@ -1,3 +1,8 @@
+/*!
+ * jquery-pagination-lgh v1.0 (https://github.com/honguangli/jquery-pagination-lgh)
+ * Copyright honguangli
+ * Licensed under the MIT license
+ */
 ;
 (function($) {
   "use strict";
