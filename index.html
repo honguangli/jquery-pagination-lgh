@@ -8,35 +8,34 @@
 	<body>
 		<div class="pagination-box"></div>
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-pagination-lgh.min.js"></script>
+    <script type="text/javascript" src="js/jquery-pagination-lgh.js"></script>
     <script>
       // step-1
       let $paginationBox = $('.pagination-box');
       // step-2
       let opt = {
-              curr: 1,
+              page: 1,
               limit: 9,
               total: 99,
               show: 3,
-              autoRefresh: true,
-              clickFun: function (curr, limit) {
-                  testFun(curr, limit);
+              clickFun: function (page, limit, total, pageTotal, pageShow) {
+                  testFun(page, limit, total, pageTotal, pageShow);
               }
           };
       // step-3
       $paginationBox.pagination(opt);
       // api
-      $paginationBox.pagination('update', {curr: times, total: times+100}, true);
+      $paginationBox.pagination('update', {page: 5, limit: 10, total: 100});
       $paginationBox.pagination('refresh'); 
       
-      function testFun(page, limit) {
-        console.log("click fun: page = ", page, "limit = ", limit)
+      function testFun(page, limit, total, pageTotal, pageShow) {
+        console.log("click fun: page = ", page, "limit = ", limit, "total = ", total, "pageTotal = ", pageTotal, "pageShow = ", pageShow);
       }
       
       var times = 1;
       const interval = setInterval(function() {
               // step-4
-              $paginationBox.pagination('update', {curr: times, total: times+100}, true);
+              $paginationBox.pagination('update', {page: times, total: times+100});
               if (times++ > 5) {
                   clearInterval(interval);
               }
