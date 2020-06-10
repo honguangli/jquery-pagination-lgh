@@ -3,14 +3,14 @@
   "use strict";
   // 默认配置
   const defaults = {
-    page: 1, // 当前页码
-    limit: 10, // 每页记录数
-    total: 0, // 总记录数
-    pageTotal: 1, // 总页数
-    pageShow: 3, // 展示页码数
-    clickFun: null, // 点击回调事件，仅首页、末页、数字页码有回调
-    min: 1, // 当前最小页码
-    max: 3, // 当前最大页码
+    page: 1,         // 当前页码
+    limit: 10,       // 每页记录数
+    total: 0,        // 总记录数
+    pageTotal: 1,    // 总页数
+    pageShow: 3,     // 展示页码数
+    clickFun: null,  // 点击回调事件，仅首页、末页、数字页码有回调
+    min: 1,          // 当前最小页码
+    max: 3,          // 当前最大页码
   };
 
   function Pagination(element, option) {
