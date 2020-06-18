@@ -13,7 +13,7 @@
     display: inline-block;
     text-align: center;
     line-height: 30px;
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     padding: 5px 10px;
     border: 1px solid #AAAAAA;
@@ -27,7 +27,7 @@
     -webkit-box-sizing: border-box;
 }
 .pagination-box ul > li.page-number a {
-    width: 40px;
+    min-width: 40px;
     border-radius: 0;
 }
 .pagination-box ul > li.page-start a {

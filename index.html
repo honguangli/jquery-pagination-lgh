@@ -16,8 +16,8 @@
       let opt = {
               page: 1,
               limit: 9,
-              total: 99,
-              show: 3,
+              total: 999,
+              pageShow: 10,
               clickFun: function (page, limit, total, pageTotal, pageShow) {
                   testFun(page, limit, total, pageTotal, pageShow);
               }
@@ -25,7 +25,7 @@
       // step-3
       $paginationBox.pagination(opt);
       // api
-      $paginationBox.pagination('update', {page: 5, limit: 10, total: 100});
+      $paginationBox.pagination('update', {page: 5, limit: 10, total: 1000});
       $paginationBox.pagination('refresh'); 
       
       function testFun(page, limit, total, pageTotal, pageShow) {
@@ -35,7 +35,7 @@
       var times = 1;
       const interval = setInterval(function() {
               // step-4
-              $paginationBox.pagination('update', {page: times, total: times+100});
+              $paginationBox.pagination('update', {page: times, total: times+1000});
               if (times++ > 5) {
                   clearInterval(interval);
               }
