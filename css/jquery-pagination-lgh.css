@@ -1,3 +1,8 @@
+/*!
+ * jquery-pagination-lgh v1.1 (https://github.com/honguangli/jquery-pagination-lgh)
+ * Copyright honguangli
+ * Licensed under the MIT license
+ */
 .pagination-box {
 }
 .pagination-box ul {
@@ -35,6 +40,14 @@
     border-radius: 0 20px;
 }
 .pagination-box ul > li.page-end a {
+    width: 100px;
+    border-radius: 0 20px;
+}
+.pagination-box ul > li.page-last a {
+    width: 100px;
+    border-radius: 0 20px;
+}
+.pagination-box ul > li.page-next a {
     width: 100px;
     border-radius: 0 20px;
 }

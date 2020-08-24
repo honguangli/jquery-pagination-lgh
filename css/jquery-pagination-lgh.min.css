@@ -1,0 +1,6 @@
+/*!
+ * jquery-pagination-lgh v1.1 (https://github.com/honguangli/jquery-pagination-lgh)
+ * Copyright honguangli
+ * Licensed under the MIT license
+ */
+.pagination-box ul{display:inline-block;margin:20px 0}.pagination-box ul>li{display:inline-block;float:left;padding:0 2px}.pagination-box ul>li>a{display:inline-block;text-align:center;line-height:30px;min-width:40px;height:40px;padding:5px 10px;border:1px solid #aaa;background-color:#fff;font-size:16px;text-decoration:none;color:#000;cursor:pointer;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}.pagination-box ul>li.page-number a{min-width:40px;border-radius:0}.pagination-box ul>li.page-start a{width:100px;border-radius:0 20px}.pagination-box ul>li.page-end a{width:100px;border-radius:0 20px}.pagination-box ul>li.page-last a{width:100px;border-radius:0 20px}.pagination-box ul>li.page-next a{width:100px;border-radius:0 20px}.pagination-box ul>li.page-left a{width:40px;border-radius:0 20px;background-color:#cbdcee;color:#fff;border-color:#cbdcee}.pagination-box ul>li.page-right a{width:40px;border-radius:0 20px;background-color:#cbdcee;color:#fff;border-color:#cbdcee}.pagination-box ul>li.disabled a{cursor:not-allowed}.pagination-box ul>li:not(.disabled)>a:hover,.pagination-box ul>li.on>a{background-color:#0051ad;color:#fff;border-color:#0051ad}

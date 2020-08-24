@@ -1,5 +1,5 @@
 /*!
- * jquery-pagination-lgh v1.0 (https://github.com/honguangli/jquery-pagination-lgh)
+ * jquery-pagination-lgh v1.1 (https://github.com/honguangli/jquery-pagination-lgh)
  * Copyright honguangli
  * Licensed under the MIT license
  */
@@ -13,13 +13,14 @@
     total: 0,        // 总记录数
     pageTotal: 1,    // 总页数
     pageShow: 3,     // 展示页码数
-    clickFun: null,  // 点击回调事件，仅首页、末页、数字页码有回调
+    clickFun: null,  // 点击回调事件，切换页码列表时不触发回调
     min: 1,          // 当前最小页码
     max: 3,          // 当前最大页码
+    visible: ['start', 'end', 'last', 'next', 'number', 'left', 'right'] // 显示组件
   };
 
   function Pagination(element, option) {
-    this.options = $.extend(true, defaults, option);
+    this.options = $.extend(false, defaults, option);
     this.element = element;
   }
 
@@ -44,6 +45,14 @@
       element.on('click', '.page-number:not(.disabled)', function() {
         const target = Number($(this).attr('data-page'));
         gotoTargetPage(target);
+      });
+      // 跳转上一页
+      element.on('click', '.page-last:not(.disabled)', function() {
+        gotoLastPage();
+      });
+      // 跳转下一页
+      element.on('click', '.page-next:not(.disabled)', function() {
+        gotoNextPage();
       });
       // 向左切换分页
       element.on('click', '.page-left:not(.disabled)', function() {
@@ -83,6 +92,30 @@
           return
         }
         opt.page = target;
+        if ($.isFunction(opt.clickFun)) {
+          opt.clickFun(opt.page, opt.limit, opt.total, opt.pageTotal, opt.pageShow);
+        }
+        self.refresh();
+      }
+      
+      // 跳转上一页
+      function gotoLastPage() {
+        if (opt.page <= 1) {
+          return
+        }
+        opt.page = opt.page - 1;
+        if ($.isFunction(opt.clickFun)) {
+          opt.clickFun(opt.page, opt.limit, opt.total, opt.pageTotal, opt.pageShow);
+        }
+        self.refresh();
+      }
+      
+      // 跳转下一页
+      function gotoNextPage() {
+        if (opt.page >= opt.pageTotal) {
+          return
+        }
+        opt.page = opt.page + 1;
         if ($.isFunction(opt.clickFun)) {
           opt.clickFun(opt.page, opt.limit, opt.total, opt.pageTotal, opt.pageShow);
         }
@@ -147,36 +180,62 @@
       const self = this;
       const element = self.element;
       const opt = self.options;
+      const visible = opt.visible;
       let html = [];
       html.push('<ul>');
-      if (opt.page === 1) {
-        html.push('<li class="page-start disabled"><a href="javascript:void(0);">首页</a></li>');
-      } else {
-        html.push('<li class="page-start"><a href="javascript:void(0);">首页</a></li>');
-      }
-      if (opt.min === 1) {
-        html.push('<li class="page-left disabled"><a href="javascript:void(0);">&lt;</a></li>');
-      } else {
-        html.push('<li class="page-left"><a href="javascript:void(0);">&lt;</a></li>');
-      }
-      for (let i = opt.min; i <= opt.max; i++) {
-        if (i === opt.page) {
-          html.push('<li class="page-number on disabled" data-page="' + i + '"><a href="javascript:void(0);">' +
-            i + '</a></li>');
+      if (visible.includes('start')) {
+        if (opt.page === 1) {
+          html.push('<li class="page-start disabled"><a href="javascript:void(0);">首页</a></li>');
         } else {
-          html.push('<li class="page-number" data-page="' + i + '"><a href="javascript:void(0);">' + i +
-            '</a></li>');
+          html.push('<li class="page-start"><a href="javascript:void(0);">首页</a></li>');
         }
       }
-      if (opt.max === opt.pageTotal) {
-        html.push('<li class="page-right disabled"><a href="javascript:void(0);">&gt;</a></li>');
-      } else {
-        html.push('<li class="page-right"><a href="javascript:void(0);">&gt;</a></li>');
+      if (visible.includes('last')) {
+        if (opt.page === 1) {
+          html.push('<li class="page-last disabled"><a href="javascript:void(0);">上一页</a></li>');
+        } else {
+          html.push('<li class="page-last"><a href="javascript:void(0);">上一页</a></li>');
+        }
       }
-      if (opt.page === opt.pageTotal) {
-        html.push('<li class="page-end disabled"><a href="javascript:void(0);">末页</a></li>');
-      } else {
-        html.push('<li class="page-end"><a href="javascript:void(0);">末页</a></li>');
+      if (visible.includes('left')) {
+        if (opt.min === 1) {
+          html.push('<li class="page-left disabled"><a href="javascript:void(0);">&lt;</a></li>');
+        } else {
+          html.push('<li class="page-left"><a href="javascript:void(0);">&lt;</a></li>');
+        }
+      }
+      if (visible.includes('number')) {
+        for (let i = opt.min; i <= opt.max; i++) {
+          if (i === opt.page) {
+            html.push('<li class="page-number on disabled" data-page="' + i + '"><a href="javascript:void(0);">' +
+              i + '</a></li>');
+          } else {
+            html.push('<li class="page-number" data-page="' + i + '"><a href="javascript:void(0);">' + i +
+              '</a></li>');
+          }
+        }
+        
+      }
+      if (visible.includes('right')) {
+        if (opt.max === opt.pageTotal) {
+          html.push('<li class="page-right disabled"><a href="javascript:void(0);">&gt;</a></li>');
+        } else {
+          html.push('<li class="page-right"><a href="javascript:void(0);">&gt;</a></li>');
+        }
+      }
+      if (visible.includes('next')) {
+        if (opt.page === opt.pageTotal) {
+          html.push('<li class="page-next disabled"><a href="javascript:void(0);">下一页</a></li>');
+        } else {
+          html.push('<li class="page-next"><a href="javascript:void(0);">下一页</a></li>');
+        }
+      }
+      if (visible.includes('end')) {
+        if (opt.page === opt.pageTotal) {
+          html.push('<li class="page-end disabled"><a href="javascript:void(0);">末页</a></li>');
+        } else {
+          html.push('<li class="page-end"><a href="javascript:void(0);">末页</a></li>');
+        }
       }
       html.push('</ul>');
       element.html(html.join(''));
