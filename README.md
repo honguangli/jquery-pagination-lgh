@@ -16,6 +16,7 @@ jquery-pagination-lgh is a pagination component depend on jquery
     limit: 9,
     total: 999,
     pageShow: 10,
+    visible: ['start', 'end', 'last', 'next', 'left', 'right', 'number'], // default option will show all controls
     clickFun: function (page, limit, total, pageTotal, pageShow) {
       testFun(page, limit, total, pageTotal, pageShow);
     }
